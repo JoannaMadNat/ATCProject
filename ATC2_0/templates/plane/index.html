@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="float-right">
+        <a href="{% url 'plane_create' %}" class="btn btn-success">New Plane</a>
+    </div>
+    <div class="clearfix"></div>
+    <table  class="table-striped"> <!-- fix this.. -->
+    <caption>Planes</caption>
+        <thead>
+            <tr>
+                <th id="header_edit">Edit</th>
+                <th id="header_id">Identifier</th>
+                <th id="header_size">Size</th>
+                <th id="header_airline">Airline</th>
+                <th id="header_out_airport">From</th>
+                <th id="header_from_airport">To</th>
+                <th id="header_in_airport">State</th>
+                <th id="header_gate">Gate</th>
+                <th id="header_runway">Runway</th>
+                <th id="header_takeoff">TakesOffTime</th>
+                <th id="header_landing">LandTime</th>
+                <th id="header_arriving">ArrivalTime</th>
+                <th id="header_speed">Speed</th>
+                <th id="header_pass">Pass engers</th>
+                <th id="header_mpass">Max Pass engers</th>
+                <th id="header_del">Delete</th>
+            </tr>
+        </thead>
+        <tbody >
+            {% for plane in object_list %}
+                <tr>
+                    <td><a href="{% url 'plane_edit' plane.id %}" class="btn btn-primary">Edit</a></td>
+                    <td>{{ plane.identifier }}</td>
+                    <td>{{ plane.size }}</td>
+                    <td>{{ plane.airline.name }}</td>
+                    <td>{{ plane.takeoff_airport.name }}</td>
+                    <td>{{ plane.landing_airport.name }}</td>
+                    <td>{{ plane.current_state }}</td>
+                    <td>{{ plane.gate.identifier }}</td>
+                    <td>{{ plane.runway.identifier }}</td>
+                    <td>{{ plane.takeoff_time }}</td>
+                    <td>{{ plane.landing_time }}</td>
+                    <td>{{ plane.arrival_time }}</td>
+                    <td>{{ plane.speed }}</td>
+                    <td>{{ plane.currentPassengerCount }}</td>
+                    <td>{{ plane.maxPassengerCount }}</td>
+                    <td><a href="{% url 'plane_delete' plane.id %}" class="btn btn-danger">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

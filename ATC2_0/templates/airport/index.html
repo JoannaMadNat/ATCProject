@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="float-right">
+        <a href="{% url 'airport_create' %}" class="btn btn-success">New Airport</a>
+    </div>
+    <div class="clearfix"></div>
+    <table class="table table-striped">
+        <caption>Airports</caption>
+        <thead>
+            <tr>
+                <th id="header_edit">Edit</th>
+                <th id="header_name">Name</th>
+                <th id="header_x">X</th>
+                <th id="header_y">Y</th>
+                <th id="header_delete">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for airport in object_list %}
+                <tr>
+                    <td><a href="{% url 'airport_edit' airport.id %}" class="btn btn-primary">Edit</a></td>
+                    <td>{{ airport.name }}</td>
+                    <td>{{ airport.x }}</td>
+                    <td>{{ airport.y }}</td>
+                    <td><a href="{% url 'airport_delete' airport.id %}" class="btn btn-danger">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

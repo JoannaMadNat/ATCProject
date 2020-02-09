@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="float-right">
+        <a href="{% url 'gate_create' %}" class="btn btn-success">New Gate</a>
+    </div>
+    <div class="clearfix"></div>
+    <table class="table table-striped">
+        <caption>Gates</caption>
+        <thead>
+            <tr>
+                <th id="header_edit">Edit</th>
+                <th id="header_id">Identifier</th>
+                <th id="header_size">Size</th>
+                <th id="header_airport">Airport</th>
+                <th id="header_delete">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for gate in object_list %}
+                <tr>
+                    <td><a href="{% url 'gate_edit' gate.id %}" class="btn btn-primary">Edit</a></td>
+                    <td>{{ gate.identifier }}</td>
+                    <td>{{ gate.size }}</td>
+                    <td>{{ gate.airport.name }}</td>
+                    <td><a href="{% url 'gate_delete' gate.id %}" class="btn btn-danger">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

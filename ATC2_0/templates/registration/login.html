@@ -1,0 +1,15 @@
+{% extends 'noauth_base.html' %}
+
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+        <h1 class="card-body">Welcome to the ATC Management System.</h1>
+    <h3 class="card-body">Please login with your user account below..</h3>
+
+    <form class="form-group" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" value="submit">LOGIN</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="float-right">
+        <a href="{% url 'runway_create' %}" class="btn btn-success">New Runway</a>
+    </div>
+    <div class="clearfix"></div>
+    <table class="table table-striped">
+        <caption>Runways</caption>
+        <thead>
+            <tr>
+                <th id="header_edit">Edit</th>
+                <th id="header_id">Identifier</th>
+                <th id="header_size">Size</th>
+                <th id="header_airport">Airport</th>
+                <th id="header_del">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for runway in object_list %}
+                <tr>
+                    <td><a href="{% url 'runway_edit' runway.id %}" class="btn btn-primary">Edit</a></td>
+                    <td>{{ runway.identifier }}</td>
+                    <td>{{ runway.size }}</td>
+                    <td>{{ runway.airport.name }}</td>
+                    <td><a href="{% url 'runway_delete' runway.id %}" class="btn btn-danger">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

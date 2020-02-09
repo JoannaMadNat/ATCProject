@@ -1,0 +1,54 @@
+{% load static from staticfiles%}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+    <link rel="icon" href="{% static "favicon.ico" %}" type="image/x-icon"/>
+
+    <title>ATC 2.0 App</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'overview_index' %}">ATC 2.0</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'airline_index' %}">Airlines</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'plane_index' %}">Planes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'airport_index' %}">Airports</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'gate_index' %}">Gates</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'runway_index' %}">Runways</a>
+            </li>
+        </ul>
+        <a href="/logout"><button class="button" style="float: right">Logout</button></a>
+    </nav>
+
+    <div class="container">
+        {%  if user.is_authenticated %}
+            {% block content %}
+            {% endblock %}
+        {% else %}
+            <a href="/login"><button>PLEASE SIGN IN!!!</button></a>
+        {% endif %}
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static "js/jquery-3.3.1.slim.min.js" %}"></script>
+    <script src="{% static "js/popper.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+  </body>
+</html>
